@@ -10,7 +10,10 @@ const Page =async ({params}) => {
   
   const user = await isUser(username)
   console.log(user)
-  if(!user | user.razorpayId == "" | user.razorpaySecret == ""){
+  if(user == null){
+    notFound()
+  }
+  else if(user.razorpayId == "" | user.razorpaySecret == ""){
     notFound()
   }
   return (

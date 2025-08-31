@@ -59,7 +59,7 @@ async function isValidImageUrl(url) {
 
 export async function updateUser(userEmail, credentialsForm) {
   await connectDB();
-  if(!isValidImageUrl(credentialsForm.profilepic)) credentialsForm.profilepic = "https://imgs.search.brave.com/h8F4iiVN8U8zKwpgk8JznRMNcCZrXMICVmWU1vJLrkg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNjUv/NDEyLzcyNy9zbWFs/bC91c2VyLWF2YXRh/ci1pbGx1c3RyYXRp/b24tdmVjdG9yLmpw/Zw"
-  if(!isValidImageUrl(credentialsForm.coverpic)) credentialsForm.coverpic = "https://imgs.search.brave.com/9t6ToEpUpIXcCJ-Liehn1Ay2_GjdKC-qTsstCyQSgFw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9k/YXJrLWdlb21ldHJp/Yy1iYWNrZ3JvdW5k/LXdpdGgtY29weS1z/cGFjZV8yNDk3Mi0x/ODE2LmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDA"
+  if(!isValidImageUrl(credentialsForm.profilepic) | credentialsForm.profilepic == "") credentialsForm.profilepic = "https://imgs.search.brave.com/h8F4iiVN8U8zKwpgk8JznRMNcCZrXMICVmWU1vJLrkg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNjUv/NDEyLzcyNy9zbWFs/bC91c2VyLWF2YXRh/ci1pbGx1c3RyYXRp/b24tdmVjdG9yLmpw/Zw"
+  if(!isValidImageUrl(credentialsForm.coverpic) | credentialsForm.coverpic == "") credentialsForm.coverpic = "https://imgs.search.brave.com/9t6ToEpUpIXcCJ-Liehn1Ay2_GjdKC-qTsstCyQSgFw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9k/YXJrLWdlb21ldHJp/Yy1iYWNrZ3JvdW5k/LXdpdGgtY29weS1z/cGFjZV8yNDk3Mi0x/ODE2LmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDA"
   await User.findOneAndUpdate({email: userEmail}, {name: credentialsForm.name, username: credentialsForm.username, profilepic: credentialsForm.profilepic, coverpic: credentialsForm.coverpic, razorpayId: credentialsForm.razorpayId, razorpaySecret: credentialsForm.razorpaySecret})
 }
