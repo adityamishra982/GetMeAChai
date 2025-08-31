@@ -18,21 +18,23 @@ const PaymentPage = ({ params }) => {
     margin: "0 auto",
     borderColor: "white",
   };
+  const validateCredentials = () => {
+    if(credentialsForm.profilepic != "" && credentialsForm.coverpic != ""){
+      console.log("credentials form is")
+      console.log(credentialsForm)
+    }
+  }
+  let user;
   const getData = async () => {
     let p = await fetchPayments(to_user);
-    let user = await fetchUser(to_user);
+    user = await fetchUser(to_user);
     setPaymentsArr(p);
     setCredentialsForm(user);
     console.log("user is");
     console.log(user);
+    setLoading(false);
+    //validateCredentials()
   };
-  const validateCredentials = () => {
-    if(credentialsForm.profilepic != "" && credentialsForm.coverpic != ""){
-      console.log("credentials form is")
-      setLoading(false);
-      console.log(credentialsForm)
-    }
-  }
   const to_user = JSON.parse(params.value).username;
   const [paymentsArr, setPaymentsArr] = useState([]);
   const totalAmount = paymentsArr.reduce((sum, payment) => sum + Number(payment.amount), 0);
